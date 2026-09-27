@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>طراحی سایت</title>
+
+    <style>
+
+        /* =========================
+           فونت ایرانی
+        ========================== */
+
+        @font-face {
+            font-family: "Vazirmatn";
+            src: url("fonts/Vazirmatn-Regular.woff2") format("woff2");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #050505;
+            color: white;
+            font-family: "Vazirmatn", Arial, sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           عنوان
+        ========================== */
+
+        h1 {
+            display: inline-block;
+            color: #ffd700;
+            font-size: 42px;
+            padding: 15px 30px;
+            margin: 20px auto 30px;
+            border: 2px dotted #ffd700;
+            border-radius: 15px;
+            text-shadow: 0 0 15px #ffd700;
+        }
+
+        .intro {
+            font-size: 20px;
+            line-height: 2;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           دکمه‌ها
+        ========================== */
+
+        button {
+            border: none;
+            font-family: inherit;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #startButton {
+            background: #ffd700;
+            color: #111;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 14px 35px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        #startButton:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+        }
+
+        #noButton {
+            background: #222;
+            color: white;
+            font-size: 18px;
+            padding: 13px 25px;
+            border-radius: 12px;
+            margin: 20px;
+            position: relative;
+            transition:
+                left 0.45s ease,
+                top 0.45s ease,
+                transform 0.45s ease;
+        }
+
+        #noButton:hover {
+            background: #333;
+        }
+
+        #funnyText {
+            display: none;
+            color: #ffd700;
+            font-size: 18px;
+            margin: 15px;
+        }
+
+        /* =========================
+           نمونه سایت‌ها
+        ========================== */
+
+        #samples {
+            display: none;
+            margin-top: 45px;
+            animation: fadeIn 0.7s ease;
+        }
+
+        #samples h2 {
+            color: #ffd700;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        .sites-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .site {
+            display: inline-block;
+            vertical-align: top;
+
+            width: 220px;
+            min-height: 190px;
+
+            margin: 12px;
+            padding: 20px;
+
+            background: #111;
+            border-radius: 18px;
+
+            color: white;
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .site h3 {
+            font-size: 22px;
+            margin-top: 5px;
+        }
+
+        .site p {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #ddd;
+        }
+
+        .site:hover {
+            transform: translateY(-8px) scale(1.03);
+        }
+
+        /* فروشگاهی */
+
+        .shop {
+            border: 3px solid #d4af37;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+        }
+
+        .shop:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
+        }
+
+        /* شرکتی */
+
+        .company {
+            border: 3px solid #00aaff;
+            box-shadow: 0 0 12px rgba(0, 170, 255, 0.25);
+        }
+
+        .company:hover {
+            box-shadow: 0 0 30px rgba(0, 170, 255, 0.7);
+        }
+
+        /* رستورانی */
+
+        .restaurant {
+            border: 3px solid #ff6a00;
+            box-shadow: 0 0 12px rgba(255, 106, 0, 0.25);
+        }
+
+        .restaurant:hover {
+            box-shadow: 0 0 30px rgba(255, 106, 0, 0.7);
+        }
+
+        /* گیمینگ */
+
+        .gaming {
+            border: 3px solid #a000ff;
+            box-shadow: 0 0 12px rgba(160, 0, 255, 0.25);
+        }
+
+        .gaming:hover {
+            box-shadow: 0 0 30px rgba(160, 0, 255, 0.7);
+        }
+
+        /* =========================
+           بخش تماس
+        ========================== */
+
+        #contact {
+            display: none;
+
+            width: 90%;
+            max-width: 600px;
+
+            margin: 55px auto 30px;
+            padding: 35px 25px;
+
+            background:
+                linear-gradient(#0c0c0c, #111);
+
+            border: 3px solid #d4af37;
+            border-radius: 25px;
+
+            position: relative;
+
+            box-shadow:
+                0 0 20px rgba(212, 175, 55, 0.35),
+                inset 0 0 20px rgba(212, 175, 55, 0.05);
+
+            animation: contactShow 0.7s ease;
+        }
+
+        #contact::before {
+            content: "";
+            position: absolute;
+
+            inset: 8px;
+
+            border: 1px solid #d4af37;
+            border-radius: 18px;
+
+            pointer-events: none;
+        }
+
+        .contact-line {
+            color: #d4af37;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        #contact h2 {
+            color: #ffd700;
+            font-size: 27px;
+            margin-bottom: 20px;
+
+            text-shadow:
+                0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        .telegram {
+            display: inline-block;
+
+            margin-top: 15px;
+            padding: 13px 25px;
+
+            border: 2px solid #d4af37;
+            border-radius: 12px;
+
+            color: #ffd700;
+            background: #090909;
+
+            font-size: 19px;
+            font-weight: bold;
+
+            box-shadow:
+                0 0 12px rgba(212, 175, 55, 0.25);
+        }
+
+        .telegram:hover {
+            transform: scale(1.05);
+            box-shadow:
+                0 0 25px rgba(212, 175, 55, 0.65);
+        }
+
+        .contact-message {
+            margin-top: 22px;
+            color: #eee;
+            font-size: 17px;
+        }
+
+        /* =========================
+           انیمیشن‌ها
+        ========================== */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes contactShow {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* =========================
+           نسخه موبایل
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 12px;
+            }
+
+            h1 {
+                display: block;
+
+                font-size: 28px;
+
+                padding: 13px 10px;
+                margin: 10px auto 25px;
+
+                border-radius: 12px;
+            }
+
+            .intro {
+                font-size: 16px;
+                line-height: 2;
+                padding: 0 8px;
+            }
+
+            #startButton {
+                width: 90%;
+                max-width: 320px;
+
+                font-size: 18px;
+                padding: 14px 20px;
+            }
+
+            #noButton {
+                font-size: 16px;
+                padding: 12px 20px;
+            }
+
+            #samples {
+                margin-top: 35px;
+            }
+
+            #samples h2 {
+                font-size: 23px;
+            }
+
+            .sites-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .site {
+                display: block;
+
+                width: 92%;
+                max-width: 360px;
+
+                min-height: auto;
+
+                margin: 0;
+                padding: 20px 16px;
+
+                border-radius: 17px;
+            }
+
+            .site h3 {
+                font-size: 21px;
+            }
+
+            .site p {
+                font-size: 14px;
+                line-height: 2;
+            }
+
+            .site:hover {
+                transform: scale(1.02);
+            }
+
+            #contact {
+                width: 95%;
+
+                margin-top: 45px;
+                padding: 30px 15px;
+
+                border-radius: 20px;
+            }
+
+            #contact h2 {
+                font-size: 23px;
+            }
+
+            .contact-line {
+                font-size: 16px;
+            }
+
+            .telegram {
+                width: 90%;
+                max-width: 300px;
+
+                font-size: 17px;
+                padding: 13px 10px;
+            }
+
+            .contact-message {
+                font-size: 15px;
+                line-height: 2;
+            }
+        }
+
+        /* =========================
+           گوشی‌های خیلی کوچک
+        ========================== */
+
+        @media (max-width: 380px) {
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .intro {
+                font-size: 15px;
+            }
+
+            #samples h2 {
+                font-size: 21px;
+            }
+
+            .site {
+                width: 96%;
+                padding: 18px 12px;
+            }
+
+            #contact h2 {
+                font-size: 21px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>طراحی سایت 🚀</h1>
+
+    <div class="intro">
+        یه سایت حرفه‌ای می‌خوای؟ 😎<br>
+        از اینجا شروع کنیم!
+    </div>
+
+    <button id="startButton" onclick="showSamples()">
+        شروع کنیم 🚀
+    </button>
+
+    <br>
+
+    <button id="noButton" onmouseenter="runAway()">
+        سایت نمی‌خوام 😎
+    </button>
+
+    <div id="funnyText">
+        😂 ول کن دیگه! بذار فرار کنم!
+    </div>
+
+    <!-- نمونه سایت‌ها -->
+
+    <section id="samples">
+
+        <h2>نمونه سایت‌هایی که می‌تونم برات بسازم 👇</h2>
+
+        <div class="sites-container">
+
+            <div class="site shop" onclick="showContact()">
+                <h3>🛍️ فروشگاهی</h3>
+
+                <p>
+                    سایت فروش محصولات،
+                    فروشگاه آنلاین،
+                    سبد خرید و ثبت سفارش
+                </p>
+            </div>
+
+            <div class="site company" onclick="showContact()">
+                <h3>💎 شرکتی</h3>
+
+                <p>
+                    سایت معرفی شرکت،
+                    خدمات، نمونه‌کارها
+                    و اطلاعات تماس
+                </p>
+            </div>
+
+            <div class="site restaurant" onclick="showContact()">
+                <h3>🍔 رستورانی</h3>
+
+                <p>
+                    سایت رستوران،
+                    نمایش منو،
+                    معرفی غذاها و سفارش
+                </p>
+            </div>
+
+            <div class="site gaming" onclick="showContact()">
+                <h3>🎮 گیمینگ</h3>
+
+                <p>
+                    سایت مخصوص بازی،
+                    گیمرها، معرفی بازی
+                    و امکانات جذاب
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- تماس -->
+
+    <section id="contact">
+
+        <div class="contact-line">
+            ◆ ✦ ◆
+        </div>
+
+        <h2>
+            آماده‌ای سایت خودتو داشته باشی؟ 😎
+        </h2>
+
+        <div class="contact-line">
+            ───── ✦ ─────
+        </div>
+
+        <div class="telegram">
+            ✈️ @mamad61978
+        </div>
+
+        <p class="contact-message">
+            برای شروع طراحی سایت پیام بده ❤️
+            <br>
+            مطمئن باشید پشیمون نمی‌شید 😊
+        </p>
+
+        <div class="contact-line">
+            ───── ✦ ─────
+        </div>
+
+        <div class="contact-line">
+            ◆ ✦ ◆
+        </div>
+
+    </section>
+
+
+    <script>
+
+        let size = 1;
+        let count = 0;
+
+        function runAway() {
+
+            const button = document.getElementById("noButton");
+            const text = document.getElementById("funnyText");
+
+            count++;
+
+            size -= 0.10;
+
+            if (size < 0.35) {
+                size = 0.35;
+            }
+
+            const maxX = Math.max(
+                20,
+                window.innerWidth - 250
+            );
+
+            const maxY = Math.max(
+                80,
+                window.innerHeight - 100
+            );
+
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            button.style.position = "fixed";
+
+            button.style.left = x + "px";
+            button.style.top = y + "px";
+
+            const rotate =
+                Math.random() * 30 - 15;
+
+            button.style.transform =
+                "scale(" + size + ") rotate(" + rotate + "deg)";
+
+
+            if (count === 3) {
+                button.innerText = "نزدیک نشو 😂";
+            }
+
+            if (count === 5) {
+                button.innerText = "کمک 😭";
+            }
+
+            if (count >= 7) {
+                button.innerText = "باشه بابا 😂";
+                text.style.display = "block";
+            }
+        }
+
+
+        function showSamples() {
+
+            const samples =
+                document.getElementById("samples");
+
+            samples.style.display = "block";
+
+            setTimeout(function () {
+
+                samples.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }, 100);
+        }
+
+
+        function showContact() {
+
+            const contact =
+                document.getElementById("contact");
+
+            contact.style.display = "block";
+
+            setTimeout(function () {
+
+                contact.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }, 100);
+        }
+
+    </script>
+
+</body>
+
+</html>
